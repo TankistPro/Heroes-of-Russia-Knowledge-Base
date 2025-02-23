@@ -1,0 +1,6 @@
+CREATE TABLE HeroesRussia (
+	id SERIAL PRIMARY KEY,
+	title VARCHAR(150) NOT NULL,
+	description TEXT NOT NULL,
+	imageUrl VARCHAR DEFAULT ''
+)
