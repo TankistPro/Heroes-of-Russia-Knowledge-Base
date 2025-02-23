@@ -1,5 +1,6 @@
 ﻿using KnowledgeBase.Models;
 using KnowledgeBase.Services;
+using KnowledgeBase.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,17 +14,14 @@ namespace KnowledgeBase
     /// </summary>
     public partial class MainWindow : Window
     {
-        HeroesRussiaService _heroesRussiaService;
-        
-        List<HeroesRussiaVM> _heroesRussiaList;
 
         public MainWindow()
         {
             InitializeComponent();
-            _heroesRussiaService = new HeroesRussiaService();
-            _heroesRussiaList = _heroesRussiaService.GetAll();
+            MainWindowVM mainWindowVM = new MainWindowVM();
+            mainWindowVM.InitVM();
 
-            this.DataContext = _heroesRussiaList.FirstOrDefault();
+            this.DataContext = mainWindowVM;
         }
     }
 }

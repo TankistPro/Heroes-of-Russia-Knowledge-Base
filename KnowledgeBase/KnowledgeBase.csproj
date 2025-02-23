@@ -11,6 +11,8 @@
     <WarningLevel>5</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Images\Андрей Николаевич Григорьев.jpg" />
+    <None Remove="Images\Дмитрий Николаевич Авдонин.png" />
     <None Remove="Images\Иван Додосов.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -19,6 +21,7 @@
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Иван Додосов.jpg" />
+    <Resource Include="Images\Андрей Николаевич Григорьев.jpg" />
+    <Resource Include="Images\Дмитрий Николаевич Авдонин.png" />
   </ItemGroup>
 </Project>

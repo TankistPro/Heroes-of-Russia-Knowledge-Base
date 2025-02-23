@@ -1,9 +1,8 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿using KnowledgeBase.ViewModels;
 
 namespace KnowledgeBase.Models
 {
-    public class HeroesRussiaVM : INotifyPropertyChanged
+    public class HeroesRussiaVM : BaseNotifyPropertyChanged
     {
         private int _id { get; set; }
         private string _title { get; set; }
@@ -56,13 +55,6 @@ namespace KnowledgeBase.Models
                 _imageUrl = value;
                 OnPropertyChanged("ImageUrl");
             }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
     }
 }
