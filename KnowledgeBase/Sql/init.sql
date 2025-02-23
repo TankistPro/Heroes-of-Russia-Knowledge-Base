@@ -1,6 +1,12 @@
 CREATE TABLE HeroesRussia (
 	id SERIAL PRIMARY KEY,
-	title VARCHAR(150) NOT NULL,
-	description TEXT NOT NULL,
-	imageUrl VARCHAR DEFAULT ''
+	firstName VARCHAR(50) NOT NULL,
+	lastName VARCHAR(100) NOT NULL,
+	middleName VARCHAR(150),
+	biography TEXT,
+	placeBirth TEXT,
+	imageUrl VARCHAR
 )
+
+ALTER TABLE HeroesRussia 
+	ADD COLUMN BirthDate DATE

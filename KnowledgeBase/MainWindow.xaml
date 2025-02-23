@@ -2,11 +2,19 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:viewmodels="clr-namespace:KnowledgeBase.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowVM}"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:viewmodels="clr-namespace:KnowledgeBase.ViewModels" 
+        xmlns:local="clr-namespace:KnowledgeBase.ValueConverters" 
+        d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowVM}"
         mc:Ignorable="d"
         Title="База знаний: Герои России" Height="450" Width="800"
         WindowState="Maximized"
     >
+
+    <Window.Resources>
+        <local:BirthDateConverter x:Key="BirthDateConverter" />
+    </Window.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250px"/>
@@ -19,18 +27,52 @@
             <RowDefinition Height="10px"/>
         </Grid.RowDefinitions>
 
-        <ListBox Grid.Row="1" Grid.Column="0" ItemsSource="{Binding HeroesRussiaListVM}">
+        <ListBox Name="HeroesRussiaListBox"  Grid.Row="1" Grid.Column="0" ItemsSource="{Binding HeroesRussiaListVM}" SelectionChanged="ListBox_SelectionChanged">
             <ListBox.ItemTemplate>
                 
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <Image Source="{Binding Path=ImageUrl}" Height="40" Width="40" />
-                        <TextBlock Text="{Binding Path=Title}" FontSize="12" Margin="10px 0 0 0" />
+                        <TextBlock Text="{Binding Path=FullFIO}" FontSize="12" Margin="10px 0 0 0" />
                     </StackPanel>
                 </DataTemplate>
                 
             </ListBox.ItemTemplate>
         </ListBox>
 
+
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBlock Text="{Binding Path=CurrentHero.FullFIO}" FontSize="28" TextAlignment="Center" FontWeight="Bold" Margin="0 0 0 20px"/>
+
+            <Grid Margin="10px 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="400px" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Image Source="{Binding Path=CurrentHero.ImageUrl}" Grid.Column="0" Margin="0 0 20px 0" />
+
+                <StackPanel Grid.Row="1" Grid.Column="1">
+                    <TextBlock Text="Биография" FontWeight="Bold" FontSize="20" Margin="0 0 0 10px" />
+                    <TextBlock Text="{Binding Path=CurrentHero.Biography}" FontSize="18" TextWrapping="Wrap" LineHeight="35" />
+                    
+                    <Line Stroke="Black" StrokeThickness="1" Width="400px" X1="0" Y1="0" X2="400" Y2="0" Margin="0 20px" />
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Дата рождения: " FontWeight="Bold" FontSize="16" Margin="0 0 0 10px" />
+                        <TextBlock Text="{Binding Path=CurrentHero.BirthDate, Converter={ StaticResource BirthDateConverter } }" FontSize="16" LineHeight="35" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Место рождения: " FontWeight="Bold" FontSize="16" Margin="0 0 0 10px" />
+                        <TextBlock Text="{Binding Path=CurrentHero.PlaceBirth }" FontSize="16" LineHeight="35" />
+                    </StackPanel>
+
+                </StackPanel>
+            </Grid>
+        </StackPanel>
     </Grid>
 </Window>

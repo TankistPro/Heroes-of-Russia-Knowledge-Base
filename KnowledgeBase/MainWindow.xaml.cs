@@ -1,11 +1,8 @@
 ﻿using KnowledgeBase.Models;
-using KnowledgeBase.Services;
 using KnowledgeBase.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
-using System.Windows.Documents;
+using System.Windows.Controls;
+
 
 namespace KnowledgeBase
 {
@@ -14,14 +11,25 @@ namespace KnowledgeBase
     /// </summary>
     public partial class MainWindow : Window
     {
-
+        private MainWindowVM _mainWindowVM;
         public MainWindow()
         {
             InitializeComponent();
-            MainWindowVM mainWindowVM = new MainWindowVM();
-            mainWindowVM.InitVM();
+            _mainWindowVM = new MainWindowVM();
+            _mainWindowVM.InitVM();
+            
+            DataContext = _mainWindowVM;
+            HeroesRussiaListBox.SelectedIndex = 0;
+        }
 
-            this.DataContext = mainWindowVM;
+        private void ListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            var selectedHero = (sender as ListBox).SelectedItem as HeroesRussiaVM;
+
+            if(selectedHero != null)
+            {
+                _mainWindowVM.CurrentHero = selectedHero;
+            }
         }
     }
 }

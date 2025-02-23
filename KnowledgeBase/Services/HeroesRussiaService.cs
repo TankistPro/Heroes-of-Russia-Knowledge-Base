@@ -2,8 +2,6 @@
 using KnowledgeBase.Sql;
 using Npgsql;
 using System.Collections.Generic;
-using System.Dynamic;
-using System.Threading.Tasks;
 
 namespace KnowledgeBase.Services
 {
@@ -28,9 +26,13 @@ namespace KnowledgeBase.Services
                 {
                     result.Add(new HeroesRussiaVM(
                         id: (int)reader["id"],
-                        title: reader.GetString(1),
-                        description: reader.GetString(2),
-                        imageUrl: reader.GetString(3)
+                        firstName: reader.GetString(1),
+                        lastName: reader.GetString(2),
+                        middleName: reader.GetString(3),
+                        biography: reader.GetString(4),
+                        placeBirth: reader.GetString(5),
+                        imageUrl: reader.GetString(6),
+                        birthDate: reader.IsDBNull(7) ? null : reader.GetDateTime(7)
                     ));
                 }
             }
