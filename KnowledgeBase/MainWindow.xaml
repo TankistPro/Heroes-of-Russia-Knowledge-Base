@@ -3,21 +3,41 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:KnowledgeBase"
+        xmlns:local="clr-namespace:KnowledgeBase" xmlns:models="clr-namespace:KnowledgeBase.Models" d:DataContext="{d:DesignInstance Type=models:HeroesRussiaVM}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="База знаний: Герои России" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
+            <ColumnDefinition Width="150px"/>
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="10px"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="10px" />
             <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="10px"/>
         </Grid.RowDefinitions>
 
-        <Button Grid.Column="1" Grid.Row="1" Click="Button_Click">Тест</Button>
+        <ListBox Grid.Row="1" Grid.Column="0">
+            <ListBoxItem >
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Images/Иван Додосов.jpg" Height="40" Width="40" />
+                    <TextBlock Text="Иван Додосов" Margin="10px 0 0 0" />
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem >
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Images/Иван Додосов.jpg" Height="40" Width="40" />
+                    <TextBlock Text="Иван Додосов" Margin="10px 0 0 0" />
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem >
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Images/Иван Додосов.jpg" Height="40" Width="40" />
+                    <TextBlock Text="Иван Додосов" Margin="10px 0 0 0" />
+                </StackPanel>
+            </ListBoxItem>
+        </ListBox>
+
     </Grid>
 </Window>

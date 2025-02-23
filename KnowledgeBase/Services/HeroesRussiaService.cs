@@ -10,21 +10,21 @@ namespace KnowledgeBase.Services
     public class HeroesRussiaService
     {
 
-        public async Task<List<HeroesRussiaVM>> GetAll()
+        public List<HeroesRussiaVM> GetAll()
         {
             var result = new List<HeroesRussiaVM>();
 
             using (var npgsqlConnection = new NpgsqlRepository().connection)
             {
-                await npgsqlConnection.OpenAsync();
+                npgsqlConnection.Open();
                 var command = new NpgsqlCommand();
                 command.Connection = npgsqlConnection;
 
                 command.CommandText = $"SELECT * FROM heroesrussia;";
 
-                NpgsqlDataReader reader = await command.ExecuteReaderAsync();
+                NpgsqlDataReader reader = command.ExecuteReader();
 
-                while (await reader.ReadAsync())
+                while (reader.Read())
                 {
                     result.Add(new HeroesRussiaVM(
                         id: (int)reader["id"],
