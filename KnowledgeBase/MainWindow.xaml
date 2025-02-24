@@ -17,7 +17,7 @@
     
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="250px"/>
+            <ColumnDefinition Width="350px"/>
             <ColumnDefinition Width="4*" />
             <ColumnDefinition Width="10px"/>
         </Grid.ColumnDefinitions>
@@ -27,13 +27,13 @@
             <RowDefinition Height="10px"/>
         </Grid.RowDefinitions>
 
-        <ListBox Name="HeroesRussiaListBox"  Grid.Row="1" Grid.Column="0" ItemsSource="{Binding HeroesRussiaListVM}" SelectionChanged="ListBox_SelectionChanged">
+        <ListBox Name="HeroesRussiaListBox" Grid.Row="1" Grid.Column="0" ItemsSource="{Binding HeroesRussiaListVM}" SelectionChanged="ListBox_SelectionChanged">
             <ListBox.ItemTemplate>
                 
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="{Binding Path=ImageUrl}" Height="40" Width="40" />
-                        <TextBlock Text="{Binding Path=FullFIO}" FontSize="12" Margin="10px 0 0 0" />
+                        <Image Source="{Binding Path=ImageUrl}" Height="50" Width="40" Stretch="UniformToFill" VerticalAlignment="Center" />
+                        <TextBlock Text="{Binding Path=FullFIO}" FontSize="12" VerticalAlignment="Center" Margin="10px 0 0 0" />
                     </StackPanel>
                 </DataTemplate>
                 
@@ -46,14 +46,14 @@
 
             <Grid Margin="10px 0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="400px" />
+                    <ColumnDefinition Width="350px" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <Image Source="{Binding Path=CurrentHero.ImageUrl}" Grid.Column="0" Margin="0 0 20px 0" />
+                <Image Source="{Binding Path=CurrentHero.ImageUrl}" Grid.Column="0" Margin="0 0 20px 0" Stretch="UniformToFill" HorizontalAlignment="Center"  />
 
                 <StackPanel Grid.Row="1" Grid.Column="1">
                     <TextBlock Text="Биография" FontWeight="Bold" FontSize="20" Margin="0 0 0 10px" />

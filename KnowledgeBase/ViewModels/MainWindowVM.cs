@@ -30,11 +30,11 @@ namespace KnowledgeBase.ViewModels
             }
         }
 
-        public void InitVM()
+        async public void InitVM()
         {
             HeroesRussiaService heroesRussiaService = new HeroesRussiaService();
 
-            HeroesRussiaListVM = heroesRussiaService.GetAll();
+            HeroesRussiaListVM = await heroesRussiaService.GetAll();
             CurrentHero = HeroesRussiaListVM.FirstOrDefault();
         }
     }

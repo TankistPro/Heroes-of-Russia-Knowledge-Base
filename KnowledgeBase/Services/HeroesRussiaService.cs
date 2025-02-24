@@ -2,27 +2,28 @@
 using KnowledgeBase.Sql;
 using Npgsql;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace KnowledgeBase.Services
 {
     public class HeroesRussiaService
     {
 
-        public List<HeroesRussiaVM> GetAll()
+        async public Task<List<HeroesRussiaVM>> GetAll()
         {
             var result = new List<HeroesRussiaVM>();
 
             using (var npgsqlConnection = new NpgsqlRepository().connection)
             {
-                npgsqlConnection.Open();
+                await npgsqlConnection.OpenAsync();
                 var command = new NpgsqlCommand();
                 command.Connection = npgsqlConnection;
 
                 command.CommandText = $"SELECT * FROM heroesrussia;";
 
-                NpgsqlDataReader reader = command.ExecuteReader();
+                NpgsqlDataReader reader = await command.ExecuteReaderAsync();
 
-                while (reader.Read())
+                while (await reader.ReadAsync())
                 {
                     result.Add(new HeroesRussiaVM(
                         id: (int)reader["id"],

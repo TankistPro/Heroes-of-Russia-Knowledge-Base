@@ -16,8 +16,9 @@ namespace KnowledgeBase
         {
             InitializeComponent();
             _mainWindowVM = new MainWindowVM();
+
             _mainWindowVM.InitVM();
-            
+
             DataContext = _mainWindowVM;
             HeroesRussiaListBox.SelectedIndex = 0;
         }
