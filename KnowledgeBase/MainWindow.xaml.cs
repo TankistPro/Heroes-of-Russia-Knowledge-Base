@@ -1,4 +1,5 @@
 ﻿using KnowledgeBase.Models;
+using KnowledgeBase.Services;
 using KnowledgeBase.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,10 +13,13 @@ namespace KnowledgeBase
     public partial class MainWindow : Window
     {
         private MainWindowVM _mainWindowVM;
+        private HeroesRussiaService _heroesRussiaService;
+
         public MainWindow()
         {
             InitializeComponent();
             _mainWindowVM = new MainWindowVM();
+            _heroesRussiaService = new HeroesRussiaService();
 
             _mainWindowVM.InitVM();
 
@@ -31,6 +35,16 @@ namespace KnowledgeBase
             {
                 _mainWindowVM.CurrentHero = selectedHero;
             }
+        }
+
+        async private void SearchInput_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (SearchInput.Text != "") SearchInputPlaceholder.Visibility = Visibility.Hidden;
+            else SearchInputPlaceholder.Visibility = Visibility.Visible;
+
+            var result = await _heroesRussiaService.Search(SearchInput.Text);
+
+            _mainWindowVM.HeroesRussiaListVM = result;
         }
     }
 }
